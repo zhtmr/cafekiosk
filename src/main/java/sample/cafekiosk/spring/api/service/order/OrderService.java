@@ -3,7 +3,7 @@ package sample.cafekiosk.spring.api.service.order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import sample.cafekiosk.spring.domain.order.Order;
 import sample.cafekiosk.spring.domain.order.OrderRepository;
@@ -29,10 +29,10 @@ public class OrderService {
   private final StockRepository stockRepository;
 
   /**
-   *  TODO : 재고 감소 -> 동시성 고민 (여러대의 키오스크 있을경우)
+   *  재고 감소 -> 동시성 고민 (여러대의 키오스크 있을경우)
    *  optimistic lock / pessimistic lock / ...
    */
-  public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+  public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
     List<String> productNumbers = request.getProductNumbers();
     List<Product> products = findProductsBy(productNumbers);
 
