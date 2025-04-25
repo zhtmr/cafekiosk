@@ -46,7 +46,7 @@ class OrderServiceTest {
   private OrderService orderService;
 
   /*
-  *   테스트코드에서 @Transactional 을 안 붙일 경우 수동 삭제해야됨.
+  *   테스트코드에서 @Transactional 을 안 붙일 경우 아래처럼 수동 삭제해야됨.
   *   단, Service 코드에 @Transactional 이 있어야 update 쿼리(더티체킹) 이 동작한다.
   *   변경감지는 트랜잭션 내에서 스냅샷 비교를 통해 커밋 시점에 이루어지기 때문.
   *   (save 쿼리의 경우 구현체에 @Transactional 이 붙어있어서 원래부터 그냥 제대로 동작함)
