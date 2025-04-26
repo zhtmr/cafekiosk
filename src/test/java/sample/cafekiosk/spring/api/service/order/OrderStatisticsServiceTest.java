@@ -55,7 +55,7 @@ class OrderStatisticsServiceTest {
     mailSendHistoryRepository.deleteAllInBatch();
   }
 
-  @DisplayName("결제완료 주문들을 조회하여 매출 통계 메일을 전송한다.")
+  @DisplayName("결제완료 주문들을 조회하여 매출 통계 메일을 전송한다.!!")
   @Test
   void sendOrderStatisticsMail() {
     // given
