@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CafeKioskTest {
 
-  @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
+  @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.!!")
   @Test
   void add() {
     CafeKiosk cafeKiosk = new CafeKiosk();
