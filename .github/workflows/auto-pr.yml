@@ -26,7 +26,7 @@ jobs:
           body: |
             이 PR은 main 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
             커버리지 확인 및 리뷰 목적으로 활용됩니다.
-          branch: 'create-pull-request/patch'
+          branch: 'auto-pr'
           base: main
           draft: 'false'
 
