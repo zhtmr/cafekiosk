@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
 
       - name: Run tests and generate coverage report
-        run: ./gradlew clean test jacocoTestReport
+        run: ./gradlew clean build jacocoTestReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
