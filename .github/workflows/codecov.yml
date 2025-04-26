@@ -28,5 +28,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: zhtmr/cafekiosk
           files: build/reports/jacoco/test/jacocoTestReport.xml
-          fail_ci_if_error: fase  # ci 실패하더라도 워크플로우는 진행
+          fail_ci_if_error: false  # ci 실패하더라도 워크플로우는 진행
           verbose: true
