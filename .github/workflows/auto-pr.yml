@@ -24,13 +24,13 @@ jobs:
           github.event_name != 'pull_request'
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "[Auto] test report"
           title: "🔁 Auto PR from main commit"
           body: |
             이 PR은 main 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
             커버리지 확인 및 리뷰 목적으로 활용됩니다.
-          branch: auto-pr/${{ github.sha }}
+          branch: 'create-pull-request/patch'
           base: main
+          draft: 'false'
 
       - name: Enable Auto Merge
         if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
