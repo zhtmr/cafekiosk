@@ -22,13 +22,14 @@ jobs:
         id: create_pr
         if: |
           github.event_name != 'pull_request'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v4
         with:
           title: "🔁 Auto PR from main commit"
           body: |
             이 PR은 main 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
             커버리지 확인 및 리뷰 목적으로 활용됩니다.
-          branch: 'auto-pr'
+          branch-suffix: timestamp
+          commit-message: '[create-pull-request]'
           base: main
           draft: 'false'
 
