@@ -2,7 +2,9 @@ name: Java CI with Codecov
 
 on:
   push:
-#  pull_request:
+    branches: [ main ]
+  pull_request:
+      branches: [ main ]
 
 jobs:
   build:
@@ -17,11 +19,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build with Gradle
-        run: ./gradlew build jacocoTestReport
+      - name: Run tests and generate coverage report
+        run: ./gradlew clean test jacocoTestReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          slug: zhtmr/cafekiosk
           files: build/reports/jacoco/test/jacocoTestReport.xml
+          fail_ci_if_error: true
+          verbose: true
