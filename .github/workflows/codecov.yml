@@ -46,6 +46,7 @@ jobs:
             커버리지 확인 및 리뷰 목적으로 활용됩니다.
           branch-suffix: timestamp
           commit-message: '[create-pull-request]'
+          base: main
 
 #      - name: Enable Auto Merge
 #        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
@@ -56,8 +57,8 @@ jobs:
 #          merge-method: squash
 #
 
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+#      - name: Upload test results to Codecov
+#        if: ${{ !cancelled() }}
+#        uses: codecov/test-results-action@v1
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
