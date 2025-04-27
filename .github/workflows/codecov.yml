@@ -32,12 +32,6 @@ jobs:
           files: build/reports/jacoco/test/jacocoTestReport.xml
           verbose: true
 
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
       - name: Create Pull Request
         id: create_pr
         if: |
@@ -59,3 +53,9 @@ jobs:
 #          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
 #          merge-method: squash
 #
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
