@@ -47,6 +47,8 @@ test {
 jacocoTestReport {
     dependsOn test // 테스트 후에 실행되도록
 
+    executionData(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
+
     reports {
         xml.required = true
         html.required = true
