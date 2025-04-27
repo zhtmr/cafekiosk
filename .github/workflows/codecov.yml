@@ -9,7 +9,6 @@ on:
 jobs:
   generate-pr-for-coverage:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +28,12 @@ jobs:
           slug: zhtmr/cafekiosk
           files: build/reports/jacoco/test/jacocoTestReport.xml
           verbose: true
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Create Pull Request
         id: create_pr
@@ -51,8 +56,3 @@ jobs:
 #          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
 #          merge-method: squash
 #
-#      - name: Upload test results to Codecov
-#        if: ${{ !cancelled() }}
-#        uses: codecov/test-results-action@v1
-#        with:
-#          token: ${{ secrets.CODECOV_TOKEN }}
