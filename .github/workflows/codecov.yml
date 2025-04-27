@@ -44,6 +44,9 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
+      - name: Force file change
+        run: echo "Force update $(date)" >> force-update.txt
+
       - name: Create Pull Request
         id: create_pr
         if: |
