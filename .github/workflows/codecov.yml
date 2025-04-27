@@ -10,7 +10,10 @@ jobs:
   generate-pr-for-coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up JDK
         uses: actions/setup-java@v3
