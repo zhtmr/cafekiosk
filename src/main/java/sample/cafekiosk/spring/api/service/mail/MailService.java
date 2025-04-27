@@ -23,7 +23,7 @@ public class MailService {
           .content(contents)
           .build());
 
-      // @Spy 를 쓰면 log 확인할 수 있다
+      // @Spy 를 쓰면 log 확인할 수 있다.
       mailSendClient.a();
       mailSendClient.b();
       mailSendClient.c();
