@@ -37,13 +37,13 @@ jobs:
           branch-suffix: timestamp
           commit-message: '[create-pull-request]'
 
-#      - name: Enable Auto Merge
-#        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
-#        uses: peter-evans/enable-pull-request-automerge@v3
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
-#          merge-method: squash
+      - name: Enable Auto Merge
+        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
+          merge-method: squash
 #
 
 
