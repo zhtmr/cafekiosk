@@ -10,6 +10,8 @@ import sample.cafekiosk.spring.domain.order.OrderStatus;
 import java.time.LocalDate;
 import java.util.List;
 
+// 메일 전송 같은 긴 작업은 Transaction에 참여하지 않아도 된다. (커넥션 풀 고갈 방지)
+// @Transactional 붙이지 않음.
 @RequiredArgsConstructor
 @Service
 public class OrderStatisticsService {

@@ -10,6 +10,6 @@ public class MailSendClient {
   public boolean sendMail(String fromEmail, String toEmail, String subject, String contents) {
     // 메일 전송
     log.info("메일 전송");
-    throw new IllegalArgumentException("메일 전송");  // 구현하지 않고 테스트 용으로만 사용 (mocking)
+    throw new IllegalArgumentException("메일 전송");  // 구현하지 않고 테스트 용으로만 사용 (stubbing)
   }
 }
