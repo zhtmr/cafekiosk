@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -44,6 +42,7 @@ jobs:
             커버리지 확인 및 리뷰 목적으로 활용됩니다.
           branch-suffix: timestamp
           commit-message: '[create-pull-request]'
+          base: main
 
 #      - name: Enable Auto Merge
 #        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
