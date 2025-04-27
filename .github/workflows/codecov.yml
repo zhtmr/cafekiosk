@@ -25,8 +25,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Run tests and generate coverage report
-        run: ./gradlew clean build jacocoTestReport
+      - name: Build and Run Tests
+        run: ./gradlew clean build
+
+      - name: Generate Coverage Report
+        run: ./gradlew jacocoTestReport
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -35,15 +44,6 @@ jobs:
           slug: zhtmr/cafekiosk
           files: build/reports/jacoco/test/jacocoTestReport.xml
           verbose: true
-
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Force file change
-        run: echo "Force update $(date)" >> force-update.txt
 
       - name: Create Pull Request
         id: create_pr
