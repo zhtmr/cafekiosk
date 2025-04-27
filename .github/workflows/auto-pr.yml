@@ -1,15 +1,14 @@
-name: Java CI with Codecov
+name: auto-pr
 
 on:
   push:
-#  pull_request:
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  generate-pr-for-coverage:
+  auto-pr:
     runs-on: ubuntu-latest
     if: |
       github.repository == 'zhtmr/cafekiosk' &&
@@ -24,27 +23,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Build and Run Tests
-        run: ./gradlew clean build
-
-      - name: Generate Coverage Report
-        run: ./gradlew jacocoTestReport
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: zhtmr/cafekiosk
-          files: build/reports/jacoco/test/jacocoTestReport.xml
-          verbose: true
-
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: build/test-results/**/*.xml
 
       - name: Create Pull Request
         id: create_pr

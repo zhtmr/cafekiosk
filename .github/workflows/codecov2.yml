@@ -1,0 +1,46 @@
+name: Java CI with Codecov
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-pr-for-coverage:
+    runs-on: ubuntu-latest
+    if: |
+      github.repository == 'zhtmr/cafekiosk' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build and Run Tests
+        run: ./gradlew clean build
+
+      - name: Generate Coverage Report
+        run: ./gradlew jacocoTestReport
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/test-results/**/*.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: zhtmr/cafekiosk
+          files: build/reports/jacoco/test/jacocoTestReport.xml
+          verbose: true
