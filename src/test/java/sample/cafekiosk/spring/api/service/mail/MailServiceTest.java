@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import sample.cafekiosk.spring.client.mail.MailSendClient;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistory;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-  @Mock
+  @Spy
   private MailSendClient mailSendClient;
 
   @Mock
@@ -31,12 +32,13 @@ class MailServiceTest {
   @Test
   void sendMail() {
     // given
-//    MailSendClient mailSendClient = mock(MailSendClient.class);
-//    MailSendHistoryRepository mailSendHistoryRepository = mock(MailSendHistoryRepository.class);
-//    MailService mailService = new MailService(mailSendClient, mailSendHistoryRepository);
+//    when(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+//        .thenReturn(true);
 
-    when(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
-        .thenReturn(true);
+    // @Spy 를 사용하려면 아래처럼 stubbing 해야 된다. 실제 객체의 일부 기능이 그대로 동작하는지 확인하고 싶을때
+    doReturn(true)
+        .when(mailSendClient)
+        .sendMail(anyString(), anyString(), anyString(), anyString());
 
     // null 이나 0 이 반환되어도 되는 stub 객체는 따로 stubbing 하지 않아도 mock 기본 정책에 의해 null 로 반환된다.
 //    when(mailSendHistoryRepository.save(any(MailSendHistory.class))).thenReturn(null);

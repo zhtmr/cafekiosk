@@ -12,4 +12,16 @@ public class MailSendClient {
     log.info("메일 전송");
     throw new IllegalArgumentException("메일 전송");  // 구현하지 않고 테스트 용으로만 사용 (stubbing)
   }
+
+  public void a() {
+    log.info("a");
+  }
+
+  public void b() {
+    log.info("b");
+  }
+
+  public void c() {
+    log.info("c");
+  }
 }
