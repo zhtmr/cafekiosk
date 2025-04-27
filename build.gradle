@@ -52,5 +52,6 @@ jacocoTestReport {
     reports {
         xml.required = true
         html.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
