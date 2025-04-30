@@ -185,7 +185,7 @@ class OrderServiceTest {
 
     Stock stock1 = Stock.create("001", 2);
     Stock stock2 = Stock.create("002", 2);
-    stock1.deductQuantity(1); //
+    stock1.deductQuantity(1); // todo: given 절에서 테스트가 깨지는 경우가 있을 수 있다.
     stockRepository.saveAll(List.of(stock1, stock2));
 
     OrderCreateServiceRequest request = OrderCreateServiceRequest

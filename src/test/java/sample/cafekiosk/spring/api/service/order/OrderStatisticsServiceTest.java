@@ -3,6 +3,7 @@ package sample.cafekiosk.spring.api.service.order;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -22,8 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
 @SpringBootTest
@@ -73,8 +73,10 @@ class OrderStatisticsServiceTest {
     Order order4 = createPaymentCompletedOrder(products, LocalDateTime.of(2025, 4, 27, 0, 0));
 
     // stubbing
-    when(mailSendClient.sendMail(any(String.class), any(String.class), any(String.class), any(String.class)))
-        .thenReturn(true);
+    BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+        .willReturn(true);
+//    when(mailSendClient.sendMail(any(String.class), any(String.class), any(String.class), any(String.class)))
+//        .thenReturn(true);
 
     // when
     boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2025, 4, 26), "test@test.com");
@@ -86,7 +88,6 @@ class OrderStatisticsServiceTest {
     assertThat(histories).hasSize(1)
         .extracting("content")
         .contains("총 매출 합계는 12000원입니다.");
-
   }
 
   private Order createPaymentCompletedOrder(List<Product> products, LocalDateTime now) {
