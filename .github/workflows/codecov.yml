@@ -3,7 +3,7 @@ name: auto-pr
 on:
   push:
     branches:
-      - test
+      - test**
 
 permissions:
   contents: write
