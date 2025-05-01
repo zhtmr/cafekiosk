@@ -7,3 +7,4 @@
     <img src="https://github.com/zhtmr/cafekiosk/actions/workflows/codecov.yml/badge.svg" alt="Java CI with Codecov"/>
   </a>
 </p>
+test
