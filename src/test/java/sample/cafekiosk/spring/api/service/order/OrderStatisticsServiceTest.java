@@ -5,9 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import sample.cafekiosk.spring.client.mail.MailSendClient;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistory;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistoryRepository;
 import sample.cafekiosk.spring.domain.order.Order;
@@ -26,8 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
-@SpringBootTest
-class OrderStatisticsServiceTest {
+class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
   @Autowired
   private OrderStatisticsService orderStatisticsService;
@@ -44,8 +41,6 @@ class OrderStatisticsServiceTest {
   @Autowired
   private MailSendHistoryRepository mailSendHistoryRepository;
 
-  @MockitoBean
-  private MailSendClient mailSendClient;
 
   @AfterEach
   void tearDown() {
@@ -75,8 +70,8 @@ class OrderStatisticsServiceTest {
     // stubbing
     BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
         .willReturn(true);
-//    when(mailSendClient.sendMail(any(String.class), any(String.class), any(String.class), any(String.class)))
-//        .thenReturn(true);
+    //    when(mailSendClient.sendMail(any(String.class), any(String.class), any(String.class), any(String.class)))
+    //        .thenReturn(true);
 
     // when
     boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2025, 4, 26), "test@test.com");
