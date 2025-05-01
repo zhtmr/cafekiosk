@@ -2,9 +2,9 @@ name: auto-pr
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
 
 permissions:
   contents: write
@@ -15,8 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.repository == 'zhtmr/cafekiosk' &&
-      (github.event_name != 'pull_request' ||
-       github.event.pull_request.head.repo.full_name == github.repository)
+       github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -61,19 +60,19 @@ jobs:
           files: ./build/reports/jacoco/test/jacocoTestReport.xml
           verbose: true
 
-      - name: Create Pull Request
-        id: create_pr
-        if: |
-          github.event_name != 'pull_request'
-        uses: peter-evans/create-pull-request@v4
-        with:
-          title: "🔁 Auto PR from main commit"
-          body: |
-            이 PR은 main 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
-            커버리지 확인 및 리뷰 목적으로 활용됩니다.
-          branch-suffix: timestamp
-          commit-message: '[create-pull-request]'
-          base: main
+#      - name: Create Pull Request
+#        id: create_pr
+#        if: |
+#          github.event_name != 'pull_request'
+#        uses: peter-evans/create-pull-request@v4
+#        with:
+#          title: "🔁 Auto PR from main commit"
+#          body: |
+#            이 PR은 main 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
+#            커버리지 확인 및 리뷰 목적으로 활용됩니다.
+#          branch-suffix: timestamp
+#          commit-message: '[create-pull-request]'
+#          base: main
 
 #      - name: Enable Auto Merge
 #        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
