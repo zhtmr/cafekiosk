@@ -54,6 +54,7 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.GH_TOKEN }}
           title: "🔁 Auto PR for Coverage"
           body: |
             이 PR은 test 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
