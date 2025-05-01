@@ -54,6 +54,7 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.GH_TOKEN }}
           title: "🔁 Auto PR for Coverage"
           body: |
             이 PR은 test 브랜치에 푸시된 커밋을 기반으로 자동 생성되었습니다.
@@ -63,10 +64,10 @@ jobs:
           branch: ${{ github.event.ref }}
           base: main
 
-      - name: Enable Auto Merge
-        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
-          merge-method: squash
+#      - name: Enable Auto Merge
+#        if: steps.create_pr.outputs.pull-request-operation == 'created' || steps.create_pr.outputs.pull-request-operation == 'updated'
+#        uses: peter-evans/enable-pull-request-automerge@v3
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
+#          merge-method: squash
