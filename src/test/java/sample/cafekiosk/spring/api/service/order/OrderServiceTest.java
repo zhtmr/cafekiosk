@@ -4,8 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import sample.cafekiosk.spring.IntegrationServiceTest;
 import sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import sample.cafekiosk.spring.domain.order.OrderRepository;
@@ -25,9 +24,8 @@ import static org.assertj.core.groups.Tuple.tuple;
 import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.SELLING;
 import static sample.cafekiosk.spring.domain.product.ProductType.*;
 
-@ActiveProfiles("test")
-    //@Transactional
-@SpringBootTest
+//@Transactional
+@IntegrationServiceTest
 class OrderServiceTest {
 
   @Autowired
@@ -46,11 +44,11 @@ class OrderServiceTest {
   private OrderService orderService;
 
   /*
-  *   테스트코드에서 @Transactional 을 안 붙일 경우 아래처럼 수동 삭제해야됨.
-  *   단, Service 코드에 @Transactional 이 있어야 update 쿼리(더티체킹) 이 동작한다.
-  *   변경감지는 트랜잭션 내에서 스냅샷 비교를 통해 커밋 시점에 이루어지기 때문.
-  *   (save 쿼리의 경우 구현체에 @Transactional 이 붙어있어서 원래부터 그냥 제대로 동작함)
-  * */
+   *   테스트코드에서 @Transactional 을 안 붙일 경우 아래처럼 수동 삭제해야됨.
+   *   단, Service 코드에 @Transactional 이 있어야 update 쿼리(더티체킹) 이 동작한다.
+   *   변경감지는 트랜잭션 내에서 스냅샷 비교를 통해 커밋 시점에 이루어지기 때문.
+   *   (save 쿼리의 경우 구현체에 @Transactional 이 붙어있어서 원래부터 그냥 제대로 동작함)
+   * */
   @AfterEach
   void tearDown() {
     orderProductRepository.deleteAllInBatch();

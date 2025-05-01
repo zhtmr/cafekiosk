@@ -3,14 +3,14 @@ package sample.cafekiosk.spring.domain.stock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import sample.cafekiosk.spring.RepositoryTest;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
-@DataJpaTest
+@RepositoryTest
 class StockRepositoryTest {
 
   @Autowired
