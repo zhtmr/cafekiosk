@@ -3,14 +3,15 @@ package sample.cafekiosk.spring.domain.stock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import sample.cafekiosk.spring.IntegrationTestSupport;
+import sample.cafekiosk.spring.RepositoryTest;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
-class StockRepositoryTest extends IntegrationTestSupport {
+@RepositoryTest
+class StockRepositoryTest {
 
   @Autowired
   private StockRepository stockRepository;
