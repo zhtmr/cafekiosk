@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.SELLING;
+import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.*;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
 @IntegrationServiceTest
@@ -89,7 +89,28 @@ class ProductServiceTest {
         .extracting("productNumber", "type", "sellingStatus", "name", "price")
         .contains(
             tuple("001", HANDMADE, SELLING, "카푸치노", 5000)
+        );
 
+  }
+
+  @DisplayName("판매중 상품과 판매보류 상품만 표시된다.")
+  @Test
+  void getSellingProducts() {
+    // given
+    Product product1 = createProduct("001", HANDMADE, SELLING, "아메리카노", 1000);
+    Product product2 = createProduct("002", HANDMADE, HOLD, "카푸치노", 2000);
+    Product product3 = createProduct("003", HANDMADE, STOP_SELLING, "라떼", 2000);
+    productRepository.saveAll(List.of(product1, product2, product3));
+
+    // when
+    List<ProductResponse> result = productService.getSellingProducts();
+
+    // then
+    assertThat(result).hasSize(2)
+        .extracting("productNumber", "type", "sellingStatus", "name", "price")
+        .containsExactlyInAnyOrder(
+            tuple("001", HANDMADE, SELLING, "아메리카노", 1000),
+            tuple("002", HANDMADE, HOLD, "카푸치노", 2000)
         );
 
   }
