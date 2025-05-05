@@ -86,3 +86,10 @@ bootJar {
         into 'static/docs'
     }
 }
+
+tasks.register('cleanDocs', Delete) {
+    delete file('build/docs/asciidoc')
+    delete file('src/main/resources/static/docs')
+}
+
+asciidoctor.dependsOn cleanDocs
