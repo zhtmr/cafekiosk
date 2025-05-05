@@ -10,3 +10,5 @@
     <img src="https://img.shields.io/coderabbit/prs/github/zhtmr/cafekiosk?utm_source=oss&utm_medium=github&utm_campaign=zhtmr%2Fcafekiosk&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews" alt="Java CI with Codecov"/>
   </a>
 </p>
+
+API doc : http://localhost:8080/docs/index.html

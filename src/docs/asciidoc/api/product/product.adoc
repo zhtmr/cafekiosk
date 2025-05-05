@@ -1,0 +1,15 @@
+[[product-create]]
+=== 신규 상품 등록
+
+이 API는 카페 키오스크 시스템에 새로운 상품을 등록하는 기능을 제공합니다.
+상품명, 가격, 상품 유형 등의 정보를 포함하여 요청하면 시스템에 상품이 등록됩니다.
+
+==== HTTP Request
+include::{snippets}/product-create/http-request.adoc[]
+include::{snippets}/product-create/request-fields.adoc[]
+
+==== HTTP Response
+상품이 성공적으로 등록되면 다음과 같은 응답이 반환됩니다.
+
+include::{snippets}/product-create/http-response.adoc[]
+include::{snippets}/product-create/response-fields.adoc[]
