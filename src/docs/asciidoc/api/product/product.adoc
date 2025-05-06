@@ -13,3 +13,17 @@ include::{snippets}/product-create/request-fields.adoc[]
 
 include::{snippets}/product-create/http-response.adoc[]
 include::{snippets}/product-create/response-fields.adoc[]
+
+
+=== 판매 상품 조회
+
+판매 상품을 조회합니다.
+
+==== HTTP Request
+include::{snippets}/get-selling-products/http-request.adoc[]
+// include::{snippets}/get-selling-products/request-fields.adoc[]
+
+==== HTTP Response
+
+include::{snippets}/get-selling-products/http-response.adoc[]
+include::{snippets}/get-selling-products/response-fields.adoc[]

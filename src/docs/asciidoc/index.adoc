@@ -13,3 +13,8 @@ endif::[]
 == Product API
 
 include::api/product/product.adoc[]
+
+[[Order-API]]
+== Order API
+
+include::api/order/order.adoc[]

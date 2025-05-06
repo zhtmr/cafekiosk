@@ -1,6 +1,7 @@
 package sample.cafekiosk.spring.api.service.order.response;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import sample.cafekiosk.spring.api.service.product.response.ProductResponse;
@@ -14,6 +15,8 @@ public class OrderResponse {
 
   private Long id;
   private int totalPrice;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime registeredDateTime;
   private List<ProductResponse> products;
 
