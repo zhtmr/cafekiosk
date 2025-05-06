@@ -139,18 +139,12 @@ class ProductControllerDocsTest extends RestDocsSupport {
                 fieldWithPath("status").type(JsonFieldType.STRING).description("응답 상태"),
                 fieldWithPath("message").type(JsonFieldType.STRING).description("응답 메시지"),
                 fieldWithPath("data").type(JsonFieldType.ARRAY).description("응답 데이터"),
-                fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("상품 ID")
-                    .optional(),
-                fieldWithPath("data[].productNumber").type(JsonFieldType.STRING).description("상품 번호")
-                    .optional(),
-                fieldWithPath("data[].type").type(JsonFieldType.STRING).description("상품 타입")
-                    .optional(),
-                fieldWithPath("data[].sellingStatus").type(JsonFieldType.STRING).description("상품 판매 상태")
-                    .optional(),
-                fieldWithPath("data[].name").type(JsonFieldType.STRING).description("상품 이름")
-                    .optional(),
+                fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("상품 ID"),
+                fieldWithPath("data[].productNumber").type(JsonFieldType.STRING).description("상품 번호"),
+                fieldWithPath("data[].type").type(JsonFieldType.STRING).description("상품 타입"),
+                fieldWithPath("data[].sellingStatus").type(JsonFieldType.STRING).description("상품 판매 상태"),
+                fieldWithPath("data[].name").type(JsonFieldType.STRING).description("상품 이름"),
                 fieldWithPath("data[].price").type(JsonFieldType.NUMBER).description("상품 가격")
-                    .optional()
             )
         ));
   }
