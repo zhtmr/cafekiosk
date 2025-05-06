@@ -2,6 +2,7 @@ package sample.cafekiosk.spring.docs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -17,6 +18,7 @@ public abstract class RestDocsSupport {
   protected MockMvc mockMvc;
   protected ObjectMapper objectMapper = new ObjectMapper()
       .findAndRegisterModules() // Jackson의 모든 모듈을 자동으로 등록
+      .registerModule(new JavaTimeModule())
       .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); // ISO-8601 형식으로 날짜 출력;
 
   @BeforeEach

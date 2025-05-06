@@ -1,0 +1,13 @@
+[[order-create]]
+=== 주문 생성
+
+==== HTTP Request
+include::{snippets}/order-create/http-request.adoc[]
+include::{snippets}/order-create/request-fields.adoc[]
+
+==== HTTP Response
+
+include::{snippets}/order-create/http-response.adoc[]
+include::{snippets}/order-create/response-fields.adoc[]
+
+
